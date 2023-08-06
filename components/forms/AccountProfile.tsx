@@ -36,10 +36,10 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const form = useForm({
         resolver: zodResolver(UserValidation),
         defaultValues: {
-            profile_photo: user?.image || '',
-            name: user?.name || '',
-            username: user?.username || '',
-            bio: user?.bio || '',
+            profile_photo: user?.image ? user.image : "",
+            name: user?.name ? user.name : "",
+            username: user?.username ? user.username : "",
+            bio: user?.bio ? user.bio : "",
         }
     });
 
@@ -77,7 +77,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
             }
         }
 
-        await updateUser({ userId: user.id, username: values.username,
+        await updateUser({
+            userId: user.id, username: values.username,
             name: values.name, bio: values.bio,
             image: values.profile_photo,
             path: pathname

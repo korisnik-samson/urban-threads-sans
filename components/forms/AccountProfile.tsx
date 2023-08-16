@@ -17,12 +17,12 @@ import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
     user: {
-        id: string | undefined,
-        objectID: string,
+        id: string,
+        objectId: string,
         username: string,
         name: string,
         bio: string,
-        image: string | any,
+        image: string,
     };
     btnTitle: string
 }
@@ -33,7 +33,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     const router = useRouter();
     const pathname = usePathname();
 
-    const form = useForm({
+    const form = useForm<z.infer<typeof UserValidation>>({
         resolver: zodResolver(UserValidation),
         defaultValues: {
             profile_photo: user?.image ? user.image : "",
@@ -177,7 +177,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="bg-primary-500">Submit</Button>
+                <Button type="submit" className="bg-primary-500">{btnTitle}</Button>
             </form>
         </Form>
     );

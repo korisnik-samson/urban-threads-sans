@@ -1,7 +1,7 @@
-"use server"
+"use server";
 
-import { connectToDB } from "@/lib/mongoose";
-import Thread from "@/lib/models/thread.model";
+import { connectToDB } from "../mongoose";
+import Thread from "../models/thread.model";
 import User from "../models/user.model";
 import { revalidatePath } from "next/cache";
 
@@ -20,14 +20,14 @@ export async function createThread({ text, author, communityId, path }: Params) 
             text, author, community: null,
         });
 
-        await User.findByIdAndDelete(author, {
-            $push: {threads: createdThread._id}
+        await User.findByIdAndUpdate(author, {
+            $push: { threads: createdThread._id }
         });
 
         revalidatePath(path);
 
     } catch (error: any) {
-        throw new Error(`Error creating thread: ${error.message}`)
+        throw new Error(`Error creating thread: ${error.message}`);
     }
 }
 

@@ -16,7 +16,6 @@ async function Page() {
     return (
         <React.Fragment>
             <h1 className="head-text">Create Thread</h1>
-
             <PostThread userId={userInfo._id} />
         </React.Fragment>
     )

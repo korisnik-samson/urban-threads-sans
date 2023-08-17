@@ -44,7 +44,7 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
                             <h4 className="cursor-pointer text-base-semibold text-light-1">{author.name}</h4>
                         </Link>
                         <p className="mt-2 text-small-regular text-light-2">{content}</p>
-                        <div className="mt-5 flex flex-col gap-3">
+                        <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
                             {/*other functionalities yet to be implemented*/}
                             <div className="flex gap-5">
                                 <Image src="/assets/heart-gray.svg" alt="heart" width={24} height={24}
@@ -63,7 +63,10 @@ const ThreadCard = ({ id, currentUserId, parentId, content, author, community, c
 
                             {isComment && comments.length > 0 && (
                                 <Link href={`/thread/${id}`}>
-                                    <p className="mt-1 text-subtle-medium text-gray-1">{comments.length} replies</p>
+                                    <p className="mt-1 text-subtle-medium text-gray-1">
+                                        {/* protential problem */}
+                                        {comments.length === 1 ? `${comments.length} reply` : `${comments.length} replies`}
+                                    </p>
                                 </Link>
                             )}
                         </div>

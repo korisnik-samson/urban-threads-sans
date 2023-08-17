@@ -3,6 +3,8 @@ import React from "react";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from 'next/navigation'
 import { fetchUser, getActivity } from "@/lib/actions/user.actions";
+import Link from "next/link";
+import Image from "next/image";
 
 async function Page() {
     const user = await currentUser();
@@ -22,10 +24,23 @@ async function Page() {
                 {activity.length > 0 ? (
                     <React.Fragment>
                         {activity.map((activity) => (
-                            <Link></Link>
+                            <Link key={activity._id} href={`/thread/${activity.parentId}`}>
+                                <article className="activity-card">
+                                    <Image src={activity.author.image} alt="Profile picture" width={20} height={20}
+                                           className="rounded-fill object-cover" />
+                                    <p className="!text-small-regular text-light-1">
+                                        <span className="mr-1 text-primary-500">
+                                            {activity.author.name}
+                                        </span>{" "}
+                                        replied to your thread
+                                    </p>
+                                </article>
+                            </Link>
                         ))}
                     </React.Fragment>
-                ) :}
+                ) : (
+                    <p className="!text-base-regular text-light-3">No activity yet</p>
+                )}
             </section>
         </section>
     );

@@ -10,11 +10,11 @@ const Background = () => {
 
     return (
         <React.Fragment>
-            {width && width < 640 ? (<Image src={smallBackground} alt="background" fill className="sm:object-center" />) : (
-                <Image src={background_three} alt="background" fill className="sm:object-center" />
+            {width && width < 640 ? (<Image src={smallBackground} alt="background" fill className="object-cover" />) : (
+                <Image src={background_three} alt="background" fill className="object-fill" />
             )}
         </React.Fragment>
     );
 }
 
-export default Background
+export default Background;

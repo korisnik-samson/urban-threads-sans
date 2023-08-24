@@ -93,6 +93,13 @@ async function RightSideBar() {
                         />
                     ))}
                 </div>
+                <div className="flex justify-center mt-10 mb-5">
+                    <Link href={`/communities/`}>
+                        <Button size='sm' className='community-card_btn'>
+                            View All
+                        </Button>
+                    </Link>
+                </div>
             </div>
             <div className="flex flex-1 flex-col justify-start">
                 <h3 className="text-heading4-medium text-light-1">Suggested Users</h3>
@@ -103,6 +110,13 @@ async function RightSideBar() {
                                    imgUrl={user.image} bio={user.bio} members={user.members} isCommunity={false}
                         />
                     ))}
+                </div>
+                <div className="flex justify-center mt-10 mb-5">
+                    <Link href={`/communities/`}>
+                        <Button size='sm' className='community-card_btn'>
+                            View All
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>

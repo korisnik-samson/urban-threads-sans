@@ -1,5 +1,6 @@
 import background_one from "./background-one.jpg";
 import background_two from "./background-two.jpg";
+import background_three from './background-three.jpg'
 import community from "./community.svg"
 import create from "./create.svg"
 import deleteIcon from "./delete.svg"
@@ -26,6 +27,7 @@ import userIcon from"./user-icon.svg"
 export {
     background_one,
     background_two,
+    background_three,
     community,
     create,
     deleteIcon,

@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ClerkProvider appearance={ { baseTheme: dark } }>
             <html lang="en">
                 <body className={`${inter.className} bg-dark-1`}>
-                    <Image src={background_two} alt="background" fill/>
+                    <Image src={background_two} alt="background" width={5893} height={3775}/>
                     <div className="w-full flex justify-center items-center min-h-screen">
                         {children}
                     </div>

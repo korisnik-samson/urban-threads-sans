@@ -5,10 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { SignedIn, SignOutButton, useAuth } from "@clerk/nextjs";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 function LeftSideBar() {
-    const router = useRouter();
-    const pathname = usePathname();
+    const router: AppRouterInstance = useRouter();
+    const pathname: string = usePathname();
     const { userId } = useAuth()
 
     return (

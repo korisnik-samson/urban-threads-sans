@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-
     return (
         <ClerkProvider appearance={ { baseTheme: dark } }>
             <html lang="en">

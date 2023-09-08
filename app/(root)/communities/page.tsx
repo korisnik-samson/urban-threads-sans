@@ -11,6 +11,7 @@ import ThreadsTab from "@/components/shared/ThreadsTab";
 import UserCard from "@/components/cards/UserCard";
 import { fetchCommunities } from "@/lib/actions/community.actions";
 import CommunityCard from "@/components/cards/CommunityCard";
+import SearchBar from "@/components/forms/SearchBar";
 
 async function Page() {
     const user = await currentUser();
@@ -30,7 +31,7 @@ async function Page() {
         <section>
             <h1 className="head-text mb-10">Search</h1>
 
-            {/* Search Bar */}
+            <SearchBar placeHolder="Search Communities"/>
 
             <div className="mt-14 flex flex-col gap-9">
                 {result.communities.length === 0 ? (

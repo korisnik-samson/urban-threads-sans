@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
-import {currentUser} from "@clerk/nextjs";
-import {fetchUser, fetchUsers} from "@/lib/actions/user.actions";
-import {redirect} from "next/navigation";
-import {fetchCommunities} from "@/lib/actions/community.actions";
+import { Button } from "@/components/ui/button";
+import { currentUser } from "@clerk/nextjs";
+import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
+import { fetchCommunities } from "@/lib/actions/community.actions";
+import { community_members } from "@/public/assets";
 
 interface Props {
     id: string;
@@ -39,18 +40,14 @@ async function Suggested({ id, name, username, imgUrl, bio, members, isCommunity
                     <p className='text-small-medium text-gray-1'>@{username}</p>
                 </div>
 
+                {/*View image at the bottom*/}
+
                 {members != null && members.length > 0 && (
                     <div className='flex items-center'>
-                        {members.map((member, index) => (
-                            <Image key={index} src={member.image} alt={`user_${index}`} width={28} height={28}
-                                className={`${index !== 0 && "-ml-2"} rounded-full object-cover`}
-                            />
-                        ))}
-                        {members.length > 3 && (
-                            <p className='ml-1 text-subtle-medium text-gray-1'>
-                                {members.length}+ Users
-                            </p>
-                        )}
+                        <Image src={community_members} alt="members" width={24} height={24} className="object-contain" />
+                        <p className='ml-1 text-small-regular text-gray-1'>
+                            {members.length}
+                        </p>
                     </div>
                 )}
             </div>
@@ -122,5 +119,20 @@ async function RightSideBar() {
         </section>
     );
 }
+
+/*{members != null && members.length > 0 && (
+    <div className='flex items-center'>
+        {members.map((member, index) => (
+            <Image key={index} src={member.image} alt={`user_${index}`} width={28} height={28}
+                className={`${index !== 0 && "-ml-2"} rounded-full object-cover`}
+            />
+        ))}
+        {members.length > 3 && (
+            <p className='ml-1 text-subtle-medium text-gray-1'>
+                {members.length}+ Users
+            </p>
+        )}
+    </div>
+)}*/
 
 export default RightSideBar;

@@ -12,7 +12,7 @@ import heartGray from "./heart-gray.svg"
 import home from "./home.svg"
 import logo from "./logo.svg"
 import logout from "./logout.svg"
-import members from "./members.svg"
+import community_members from "./members.svg"
 import more from "./more.svg"
 import profile from "./profile.svg"
 import request from "./request.svg"
@@ -23,7 +23,8 @@ import reply from "./reply.svg"
 import searchGray from "./search-gray.svg"
 import tag from "./tag.svg"
 import user from "./user.svg"
-import userIcon from"./user-icon.svg"
+import userIcon from "./user-icon.svg"
+import magnifyingGlass from "./magnifying-glass.svg"
 
 export {
     background_one,
@@ -40,7 +41,7 @@ export {
     home,
     logo,
     logout,
-    members,
+    community_members,
     more,
     profile,
     request,
@@ -52,4 +53,5 @@ export {
     tag,
     user,
     userIcon,
+    magnifyingGlass
 }

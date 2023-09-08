@@ -39,7 +39,7 @@ async function Page() {
                         ))}
                     </React.Fragment>
                 ) : (
-                    <p className="!text-base-regular text-light-3">No activity yet</p>
+                    <p className="!text-base-regular text-light-3">No activities yet</p>
                 )}
             </section>
         </section>

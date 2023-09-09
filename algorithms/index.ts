@@ -9,7 +9,7 @@ interface ThreadPost {
     num_tags: number;
 }
 
-export default function suggestPosts(posts: ThreadPost[]): ThreadPost[] {
+export default function suggestPosts(posts: ThreadPost[]) {
     // Define weights for each factor
     const weights = {
         likes: 2,
@@ -19,12 +19,12 @@ export default function suggestPosts(posts: ThreadPost[]): ThreadPost[] {
         num_tags: 1,
     };
 
-    for (const post of posts) {
+    /*for (const post of posts) {
         post['score'] = (post.likes * weights.likes + post.replies * weights.replies +
         post.forwards * weights.forwards + post.num_threads * weights.num_threads +
         post.num_tags * weights.num_tags);
-    }
+    }*/
 
     // Sort posts based on score in descending order
-    return posts.slice().sort((a, b) => b['score'] - a['score']);
+    // return posts.slice().sort((a: ThreadPost, b: ThreadPost) => b['score'] - a['score']);
 }

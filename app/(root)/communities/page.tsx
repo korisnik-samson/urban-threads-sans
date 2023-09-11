@@ -11,7 +11,7 @@ import ThreadsTab from "@/components/shared/ThreadsTab";
 import UserCard from "@/components/cards/UserCard";
 import { fetchCommunities } from "@/lib/actions/community.actions";
 import CommunityCard from "@/components/cards/CommunityCard";
-import SearchBar from "@/components/forms/SearchBar";
+import SearchBar from "@/components/shared/SearchBar";
 
 async function Page() {
     const user = await currentUser();

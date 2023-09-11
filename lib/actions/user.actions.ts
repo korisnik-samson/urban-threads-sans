@@ -9,7 +9,7 @@ import User from "../models/user.model";
 
 import { connectToDB } from "../mongoose";
 
-export async function fetchUser(userId: string) {
+export async function fetchUser(userId: string): Promise<any> {
     try {
         connectToDB();
 
@@ -90,7 +90,7 @@ export async function fetchUserPosts(userId: string) {
 }
 
 // Almost similar to Thead (search + pagination) and Community (search + pagination)
-export async function fetchUsers({userId, searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc"}: {
+export async function fetchUsers({ userId, searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc" }: {
     userId: string;
     searchString?: string;
     pageNumber?: number;
@@ -166,5 +166,46 @@ export async function getActivity(userId: string) {
     } catch (error) {
         console.error("Error fetching replies: ", error);
         throw error;
+    }
+}
+
+export async function searchUsersAndCommunities({ searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc" }: {
+    searchString?: string; pageNumber?: number;
+    pageSize?: number; sortBy?: SortOrder; }): Promise<any> {
+
+    try {
+        connectToDB();
+
+        const skipAmount: number = (pageNumber - 1) * pageSize;
+        const regex: RegExp = new RegExp(searchString, "i");
+
+        const query: FilterQuery<typeof User> = {
+            $or: [
+                { username: { $regex: regex } },
+                { name: { $regex: regex } },
+            ],
+        }
+
+        const sortOptions = { createdAt: sortBy };
+
+        const usersAndCommunitiesQuery = Promise.all([
+            User.find(query).sort(sortOptions).skip(skipAmount)
+                .limit(pageSize).select("username name image"),
+
+            Community.find({ name: { $regex: regex, $options: 'i' } }).sort(sortOptions).skip(skipAmount)
+                .limit(pageSize).select("name image"),
+        ]);
+
+        const [users, communities] = await usersAndCommunitiesQuery;
+        const totalUsersCount: number = users.length;
+        const totalCommunitiesCount = communities.length;
+
+        const isNext: boolean = totalUsersCount + totalCommunitiesCount > skipAmount + pageSize;
+
+        return { users, communities, isNext };
+
+    } catch (error: any) {
+        console.log("Error fetching user and community queries", error.message);
+        throw error
     }
 }

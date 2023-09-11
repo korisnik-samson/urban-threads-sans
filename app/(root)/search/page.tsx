@@ -9,7 +9,7 @@ import { profileTabs } from "@/constants";
 import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 import UserCard from "@/components/cards/UserCard";
-import SearchBar from "@/components/forms/SearchBar";
+import SearchBar from "@/components/shared/SearchBar";
 import { magnifyingGlass } from "@/public/assets";
 
 async function Page() {

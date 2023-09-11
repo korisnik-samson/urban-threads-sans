@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 
 import { community, magnifyingGlass, user } from "@/public/assets";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
-import {searchUsersAndCommunities} from "@/lib/actions/user.actions";
+import {fetchUser, searchUsersAndCommunities} from "@/lib/actions/user.actions";
+import UserCard from "@/components/cards/UserCard";
+import {currentUser} from "@clerk/nextjs";
 
 const SearchButton = ({ declarations }: { declarations: string }) => {
     return (
@@ -25,14 +27,25 @@ const SearchBar = ({ setSearch, placeHolder }: any) => {
     const router: AppRouterInstance = useRouter();
 
     async function search(searchString: string): Promise<void> {
+/*        const user = await currentUser();
+        if (!user) return null;
+
+        const userInfo = await fetchUser(user.id);
+        if (!userInfo?.onboarded) redirect('/onboarding');*/
+
         try {
-            const { users, communities, isNext } = await searchUsersAndCommunities({
-                searchString, pageNumber, pageSize
+            const result = await searchUsersAndCommunities({
+                userId: user.id,
+                searchString: searchString,
+                pageNumber: 1,
+                pageSize: 25
             });
 
-            console.log("Users: ", users)
-            console.log("Communities: ", communities)
-            console.log("Next Page?: ", isNext)
+            /*TODO: Render the search results*/
+
+            console.log("Users: ", result.users)
+            console.log("Communities: ", result.communities)
+            console.log("Next Page?: ", result.isNext)
 
         } catch (error: any) {
             console.log("Error fetching search results", error.message);

@@ -120,7 +120,7 @@ export async function fetchUsers({ userId, searchString = "", pageNumber = 1, pa
         }
 
         // Define the sort options for the fetched users based on createdAt field and provided sort order.
-        const sortOptions = {createdAt: sortBy};
+        const sortOptions = { createdAt: sortBy };
 
         const usersQuery = User.find(query)
             .sort(sortOptions).skip(skipAmount).limit(pageSize);
@@ -169,8 +169,8 @@ export async function getActivity(userId: string) {
     }
 }
 
-export async function searchUsersAndCommunities({ searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc" }: {
-    searchString?: string; pageNumber?: number;
+export async function searchUsersAndCommunities({ userId, searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc" }: {
+    userId: string; searchString?: string; pageNumber?: number;
     pageSize?: number; sortBy?: SortOrder; }): Promise<any> {
 
     try {
@@ -192,7 +192,7 @@ export async function searchUsersAndCommunities({ searchString = "", pageNumber 
             User.find(query).sort(sortOptions).skip(skipAmount)
                 .limit(pageSize).select("username name image"),
 
-            Community.find({ name: { $regex: regex, $options: 'i' } }).sort(sortOptions).skip(skipAmount)
+            Community.find({ name: { $regex: regex/*, $options: 'i'*/ } }).sort(sortOptions).skip(skipAmount)
                 .limit(pageSize).select("name image"),
         ]);
 

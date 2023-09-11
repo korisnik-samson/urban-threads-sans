@@ -35,6 +35,7 @@ async function Page() {
                 {result.users.length === 0 ? (
                     <p className="no-result">No users</p>
                 ) : (
+                    /*More like a default search*/
                     <React.Fragment>
                         {result.users.map((person) => (
                             <UserCard key={person.id} id={person.id} name={person.name} username={person.username}

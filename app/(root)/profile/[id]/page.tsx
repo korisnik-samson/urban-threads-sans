@@ -19,8 +19,8 @@ async function Page({ params }: { params: { id: string }}) {
     return (
         <section>
             <ProfileHeader accountId={userInfo.id} authUserId={user.id}
-            name={userInfo.name} username={userInfo.username}
-            imgUrl={userInfo.image} bio={userInfo.bio} />
+                name={userInfo.name} username={userInfo.username}
+                imgUrl={userInfo.image} bio={userInfo.bio} />
 
             <div className="mt-9">
                 <Tabs defaultValue="threads" className="w-full">

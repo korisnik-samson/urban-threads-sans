@@ -170,7 +170,7 @@ export async function getActivity(userId: string) {
 }
 
 export async function searchUsersAndCommunities({ userId, searchString = "", pageNumber = 1, pageSize = 20, sortBy = "desc" }: {
-    userId: string; searchString?: string; pageNumber?: number;
+    userId?: string; searchString?: string; pageNumber?: number;
     pageSize?: number; sortBy?: SortOrder; }): Promise<any> {
 
     try {
